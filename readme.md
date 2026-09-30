@@ -52,4 +52,4 @@ CREATE TABLE IF NOT EXISTS contact_inquiries (
 );
 ```
 4. Add Project Files: Clone or copy this repository into your local server's web root directory (e.g., C:/xampp/htdocs/GearShift-Rentals/).
-5. 5. **Run the Application:** Open your browser and navigate to [localhost/GearShift-Rentals](http://localhost/GearShift-Rentals/index.php).
+5. **Run the Application:** Open your browser and navigate to [localhost/GearShift-Rentals](http://localhost/GearShift-Rentals/index.php).
