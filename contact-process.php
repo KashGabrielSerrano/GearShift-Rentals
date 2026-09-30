@@ -9,9 +9,22 @@ $fullName = trim(filter_input(INPUT_POST, 'full_name', FILTER_SANITIZE_SPECIAL_C
     $phone    = trim(filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_SPECIAL_CHARS));
     $vehicle  = trim(filter_input(INPUT_POST, 'vehicle_interest', FILTER_SANITIZE_SPECIAL_CHARS));
     $message  = trim(filter_input(INPUT_POST, 'message', FILTER_SANITIZE_SPECIAL_CHARS));
-    $pickupDate = preg_replace('/[^0-9\/\-]/', '', trim($_POST['pickup_date']));
-    $dropoffDate = preg_replace('/[^0-9\/\-]/', '', trim($_POST['dropoff_date']));
+    $pickupDate = trim(filter_input(INPUT_POST,'pickup_date', FILTER_SANITIZE_SPECIAL_CHARS));
+    $dropoffDate = trim(filter_input(INPUT_POST,'dropoff_date', FILTER_SANITIZE_SPECIAL_CHARS));
     
+    function isValidDate(string $dateString) {
+        if (empty($dateString)) return false;
+        $d = DateTime::createFromFormat('Y-m-d', $dateString);
+        return $d && $d->format('Y-m-d') === $dateString;
+    }
+
+    if (!isValidDate($pickupDate)) {
+        $pickupDate = null;
+    }
+
+    if (!isValidDate($dropoffDate)) {
+        $dropoffDate = null;
+    }
 
     if (!empty($fullName) && !empty($email) && !empty($vehicle) && !empty($message)) {
         
